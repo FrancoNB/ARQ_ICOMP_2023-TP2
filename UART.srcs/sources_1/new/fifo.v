@@ -3,24 +3,24 @@
 `include "fifo.vh"
 
 module fifo
-    #
-    (
+    #(
         parameter FIFO_SIZE  = `FIFO_SIZE,
         parameter WORD_WIDTH = `WORD_WIDTH
     )
     (
-        input  wire  [WORD_WIDTH - 1 : 0] w_data,
-        input  wire                       wr,
-        input  wire                       rd,
-        input  wire                       reset,
-        output wire  [WORD_WIDTH - 1 : 0] r_data,
-        output wire                       full,
-        output wire                       empty
+        input  wire                      clk,
+        input  wire                      reset,
+        input  wire [WORD_WIDTH - 1 : 0] w_data,
+        input  wire                      wr,
+        input  wire                      rd,
+        output wire [WORD_WIDTH - 1 : 0] r_data,
+        output wire                      full,
+        output wire                      empty
     );
     
     reg [WORD_WIDTH - 1 : 0]        buffer [0 : FIFO_SIZE - 1];
     
-    reg [WORD_WIDTH - 1:0]          temp_data;
+    reg [WORD_WIDTH - 1 : 0]        temp_data;
     reg [$clog2(FIFO_SIZE) - 1 : 0] fill_level; 
     reg [$clog2(FIFO_SIZE) - 1 : 0] i;
 
