@@ -1,8 +1,5 @@
 `ifndef __UART__TX_RX_VH__
 `define __UART__TX_RX_VH__
-    `define HIGH 1'b1
-    `define LOW  1'b0
-    
     `define DATA_BITS      8
     `define SB_TICKS       16
     
@@ -16,7 +13,4 @@
     `define B_REG_SIZE     DATA_BITS
     `define N_REG_SIZE     $clog2(DATA_BITS)
     `define S_REG_SIZE     $clog2(SB_TICKS)
-
-    `define CLEAR(len) { len {`LOW}}
-    `define SET  (len) { len {`HIGH}}
 `endif // __UART__TX_RX_VH__
