@@ -3,8 +3,7 @@
 `include "fifo.vh"
 
 module fifo
-    #
-    (
+    #(
         parameter FIFO_SIZE  = `FIFO_SIZE,
         parameter WORD_WIDTH = `WORD_WIDTH
     )
@@ -20,7 +19,7 @@ module fifo
     
     reg [WORD_WIDTH - 1 : 0]        buffer [0 : FIFO_SIZE - 1];
     
-    reg [WORD_WIDTH - 1:0]          temp_data;
+    reg [WORD_WIDTH - 1 : 0]        temp_data;
     reg [$clog2(FIFO_SIZE) - 1 : 0] fill_level; 
     reg [$clog2(FIFO_SIZE) - 1 : 0] i;
 
