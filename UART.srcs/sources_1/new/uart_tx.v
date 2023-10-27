@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 
-`include "uart_tx_rx.vh"
 `include "common.vh"
+`include "uart_tx_rx.vh"
 
 module uart_tx
     #(
