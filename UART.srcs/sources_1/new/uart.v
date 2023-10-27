@@ -33,52 +33,52 @@ module uart
     
     uart_brg
     #(
-      .BAUDRATE_PRECISION(DVSR),
-      .BAUDRATE_PERIOD   (DVSR_BIT)
+      .BAUDRATE_PRECISION (DVSR),
+      .BAUDRATE_PERIOD    (DVSR_BIT)
     )
     baud_gen_unit
     (
-      .clk      (clk),
-      .reset    (reset),
-      .baud_tick(tick),
-      .baud_rate()
+      .clk       (clk),
+      .reset     (reset),
+      .baud_tick (tick),
+      .baud_rate ()
     );
     
     uart_rx
     #(
-      .DATA_BITS(DATA_BITS),
-      .SB_TICKS (SB_TICKS)
+      .DATA_BITS (DATA_BITS),
+      .SB_TICKS  (SB_TICKS)
     )
     uart_rx_unit
     (
-      .clk         (clk),
-      .reset       (reset),
-      .rx          (rx),
-      .s_tick      (tick),
-      .rx_done_tick(rx_done_tick),
-      .dout        (rx_data_out)
+      .clk          (clk),
+      .reset        (reset),
+      .rx           (rx),
+      .s_tick       (tick),
+      .rx_done_tick (rx_done_tick),
+      .dout         (rx_data_out)
     );
     
     uart_tx
     #(
-      .DATA_BITS(DATA_BITS),
-      .SB_TICKS (SB_TICKS)
+      .DATA_BITS (DATA_BITS),
+      .SB_TICKS  (SB_TICKS)
     )
     uart_tx_unit
     (
-      .clk         (clk),
-      .reset       (reset),
-      .tx_start    (tx_fifo_not_empty),
-      .s_tick      (tick),
-      .tx_done_tick(tx_done_tick),
-      .tx          (tx),
-      .din         (tx_fifo_out)
+      .clk          (clk),
+      .reset        (reset),
+      .tx_start     (tx_fifo_not_empty),
+      .s_tick       (tick),
+      .tx_done_tick (tx_done_tick),
+      .tx           (tx),
+      .din          (tx_fifo_out)
     );
  
     fifo
     #(
-      .FIFO_SIZE (FIFO_SIZE),
-      .WORD_WIDTH(DATA_BITS)
+      .FIFO_SIZE  (FIFO_SIZE),
+      .WORD_WIDTH (DATA_BITS)
     )
     fifo_rx_unit
     (
@@ -91,4 +91,24 @@ module uart
       .full   (),
       .empty  (rx_empty)
     );
+    
+    fifo
+    #(
+      .FIFO_SIZE  (FIFO_SIZE),
+      .WORD_WIDTH (DATA_BITS)
+    )
+    fifo_tx_unit
+    (
+      .clk    (clk),
+      .reset  (reset),
+      .w_data (w_data),
+      .wr     (wr_uart),
+      .rd     (tx_done_tick),
+      .r_data (tx_fifo_out),
+      .full   (tx_full),
+      .empty  (tx_empty)
+    );
+    
+    assign tx_fifo_not_empty = ~tx_empty;
+    
 endmodule
