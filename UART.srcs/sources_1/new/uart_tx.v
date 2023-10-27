@@ -2,7 +2,7 @@
 
 `include "uart_tx_rx.vh"
 
-module uart_rx
+module uart_tx
     #(
         parameter DATA_BITS  = `DATA_BITS,
         parameter SB_TICKS   = `SB_TICKS
@@ -11,15 +11,17 @@ module uart_rx
         input  wire                     s_tick,     
         input  wire                     clk,
         input  wire                     reset,
-        input  wire                     rx,
-        output reg                      rx_done_tick,
-        output wire [DATA_BITS - 1 : 0] dout
+        input  wire                     tx_start,
+        input  wire [DATA_BITS - 1 : 0] din,
+        output reg                      tx_done_tick,
+        output wire                     tx
     );
     
     reg [`STATE_REG_SIZE - 1 : 0] state_reg, state_next;
     reg [`S_REG_SIZE - 1 : 0]     s_reg, s_next;
     reg [`N_REG_SIZE - 1 : 0]     n_reg, n_next;
     reg [`B_REG_SIZE - 1 : 0]     b_reg, b_next;
+    reg                           tx_reg, tx_next;
     
     always @(posedge clk or posedge reset) 
     begin 
@@ -29,6 +31,7 @@ module uart_rx
                 s_reg     <= `CLEAR(`S_REG_SIZE);
                 n_reg     <= `CLEAR(`N_REG_SIZE);
                 b_reg     <= `CLEAR(`B_REG_SIZE);
+                tx_reg    <= `HIGH;
             end
         else
             begin
@@ -36,31 +39,38 @@ module uart_rx
                 s_reg     <= s_next;
                 n_reg     <= n_next;
                 b_reg     <= b_next;
+                tx_reg    <= tx_next;
             end
     end
     
     always @(*) 
     begin
-        rx_done_tick = `LOW;
+        tx_done_tick = `LOW;
         state_next   = state_reg;
         s_next       = s_reg;
         n_next       = n_reg;
-        b_next       = b_reg;    
-
+        b_next       = b_reg; 
+        tx_next      = tx_reg;
+        
         case(state_reg)
-            `STATE_IDLE:
+            `STATE_IDLE: 
             begin
-                if (~rx) 
+                tx_next = `HIGH;
+                
+                if (tx_start)
                     begin
                         state_next = `STATE_START;
                         s_next     = `CLEAR(`S_REG_SIZE);
+                        b_next     = din;
                     end
             end
             
-            `STATE_START:
+            `STATE_START: 
             begin
+                tx_next = `LOW;
+                
                 if (s_tick)
-                    if (s_reg == ((SB_TICKS / 2) - 1))
+                    if (s_reg == (SB_TICKS - 1))
                         begin
                             state_next = `STATE_DATA;
                             s_next     = `CLEAR(`S_REG_SIZE);
@@ -72,11 +82,13 @@ module uart_rx
             
             `STATE_DATA: 
             begin
+                tx_next = b_reg[0];
+                
                 if (s_tick)
                     if (s_reg == (SB_TICKS - 1))
                         begin
                             s_next = `CLEAR(`S_REG_SIZE);
-                            b_next = {rx, b_reg[`B_REG_SIZE - 1 : 0]};
+                            b_next = b_reg >> 1;
                             
                             if(n_reg == (DATA_BITS - 1))
                                 state_next = `STATE_STOP;
@@ -89,11 +101,13 @@ module uart_rx
             
             `STATE_STOP: 
             begin
+                tx_next = `HIGH;
+                
                 if (s_tick)
                     if (s_reg == (SB_TICKS - 1))
                         begin
                             state_next   = `STATE_IDLE;
-                            rx_done_tick = `HIGH;
+                            tx_done_tick = `HIGH;
                         end
                     else
                         s_next = s_reg + 1;
@@ -101,6 +115,6 @@ module uart_rx
         endcase
     end
     
-    assign dout = b_reg;
+    assign tx = tx_reg;
     
 endmodule
