@@ -1,0 +1,151 @@
+Time resolution is 1 ps
+Dato escrito: 24
+El estado 'empty' es correcto
+Dato escrito: 81
+El estado 'empty' es correcto
+Dato escrito: 09
+Dato leído: 24
+El estado 'empty' es correcto
+Dato escrito: 63
+El estado 'empty' es correcto
+Dato escrito: 0d
+Dato leído: 81
+El estado 'empty' es correcto
+Dato escrito: 8d
+Dato leído: 09
+El estado 'empty' es correcto
+Dato escrito: 65
+El estado 'empty' es correcto
+Dato escrito: 12
+Dato leído: 63
+El estado 'empty' es correcto
+Dato escrito: 01
+El estado 'empty' es correcto
+Dato escrito: 0d
+Dato leído: 0d
+El estado 'empty' es correcto
+Dato escrito: 76
+El estado 'empty' es correcto
+Dato escrito: 3d
+Dato leído: 8d
+El estado 'empty' es correcto
+Dato escrito: ed
+El estado 'empty' es correcto
+Dato escrito: 8c
+El estado 'empty' es correcto
+Dato escrito: f9
+El estado 'empty' es correcto
+Dato escrito: c6
+El estado 'empty' es correcto
+Dato escrito: c5
+Dato leído: 65
+El estado 'empty' es correcto
+Dato escrito: aa
+El estado 'empty' es correcto
+Dato escrito: e5
+Dato leído: 12
+El estado 'empty' es correcto
+Dato escrito: 77
+Dato leído: 01
+El estado 'empty' es correcto
+$finish called at time : 525 ns : File "D:/UART/UART.srcs/sim_1/new/tb_fifo.v" Line 78
+Dato escrito: 24
+El estado 'empty' es correcto
+Dato escrito: 81
+El estado 'empty' es correcto
+Dato escrito: 09
+Dato leído: 24
+El estado 'empty' es correcto
+Dato escrito: 63
+El estado 'empty' es correcto
+Dato escrito: 0d
+Dato leído: 81
+El estado 'empty' es correcto
+Dato escrito: 8d
+Dato leído: 09
+El estado 'empty' es correcto
+Dato escrito: 65
+El estado 'empty' es correcto
+Dato escrito: 12
+Dato leído: 63
+El estado 'empty' es correcto
+Dato escrito: 01
+El estado 'empty' es correcto
+Dato escrito: 0d
+Dato leído: 0d
+El estado 'empty' es correcto
+Dato escrito: 76
+El estado 'empty' es correcto
+Dato escrito: 3d
+Dato leído: 8d
+El estado 'empty' es correcto
+Dato escrito: ed
+El estado 'empty' es correcto
+Dato escrito: 8c
+El estado 'empty' es correcto
+Dato escrito: f9
+El estado 'empty' es correcto
+Dato escrito: c6
+El estado 'empty' es correcto
+Dato escrito: c5
+Dato leído: 65
+El estado 'empty' es correcto
+Dato escrito: aa
+El estado 'empty' es correcto
+Dato escrito: e5
+Dato leído: 12
+El estado 'empty' es correcto
+Dato escrito: 77
+Dato leído: 01
+El estado 'empty' es correcto
+$finish called at time : 525 ns : File "D:/UART/UART.srcs/sim_1/new/tb_fifo.v" Line 78
+Dato escrito: 24
+El estado 'empty' es correcto
+Dato escrito: 81
+El estado 'empty' es correcto
+Dato escrito: 09
+Dato leído: 24
+El estado 'empty' es correcto
+Dato escrito: 63
+El estado 'empty' es correcto
+Dato escrito: 0d
+Dato leído: 81
+El estado 'empty' es correcto
+Dato escrito: 8d
+Dato leído: 09
+El estado 'empty' es correcto
+Dato escrito: 65
+El estado 'empty' es correcto
+Dato escrito: 12
+Dato leído: 63
+El estado 'empty' es correcto
+Dato escrito: 01
+El estado 'empty' es correcto
+Dato escrito: 0d
+Dato leído: 0d
+El estado 'empty' es correcto
+Dato escrito: 76
+El estado 'empty' es correcto
+Dato escrito: 3d
+Dato leído: 8d
+El estado 'empty' es correcto
+Dato escrito: ed
+El estado 'empty' es correcto
+Dato escrito: 8c
+El estado 'empty' es correcto
+Dato escrito: f9
+El estado 'empty' es correcto
+Dato escrito: c6
+El estado 'empty' es correcto
+Dato escrito: c5
+Dato leído: 65
+El estado 'empty' es correcto
+Dato escrito: aa
+El estado 'empty' es correcto
+Dato escrito: e5
+Dato leído: 12
+El estado 'empty' es correcto
+Dato escrito: 77
+Dato leído: 01
+El estado 'empty' es correcto
+$finish called at time : 525 ns : File "D:/UART/UART.srcs/sim_1/new/tb_fifo.v" Line 78

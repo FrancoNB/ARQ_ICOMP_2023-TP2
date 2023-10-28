@@ -4,10 +4,10 @@
     `define SB_TICKS       16
     
     `define STATES_NUMBERS 4
-    `define STATE_IDLE     3'b00 
-    `define STATE_START    3'b01
-    `define STATE_DATA     3'b10
-    `define STATE_STOP     3'b11
+    `define STATE_IDLE     2'b00 
+    `define STATE_START    2'b01
+    `define STATE_DATA     2'b10
+    `define STATE_STOP     2'b11
 
     `define STATE_REG_SIZE $clog2(`STATES_NUMBERS)
     `define B_REG_SIZE     DATA_BITS

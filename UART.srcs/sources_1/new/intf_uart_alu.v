@@ -61,22 +61,22 @@ module intf_uart_alu
             begin
                 if (~uart_empty)
                     begin
-                        uart_rd       = `HIGH;      
+                        uart_rd       = `LOW;      
                         state_next    = `STATE_READ;
                     end
             end
             
             `STATE_READ:
             begin
-                uart_rd = `LOW;
-
                 case(selector_reg)
                     `SELECT_IN_DATA_A  : data_a_reg  = uart_rx;
                     `SELECT_IN_DATA_B  : data_b_reg  = uart_rx;
                     `SELECT_IN_OP_CODE : op_code_reg = uart_rx[OP_CODE_WIDTH - 1 : 0];
                 endcase
+                
+                uart_rd = `HIGH;
 
-                if (selector_reg == 1'b10)
+                if (selector_reg == `SELECT_IN_OP_CODE)
                     begin
                         selector_next = `CLEAR(2);
                         state_next    = `STATE_WAIT_WRITE;
@@ -92,7 +92,7 @@ module intf_uart_alu
             begin
                 if (~uart_full)
                 begin
-                    uart_wr     = `HIGH; 
+                    uart_wr     = `LOW; 
                     result_next = alu_result;     
                     state_next  = `STATE_WRITE;
                 end
@@ -100,7 +100,7 @@ module intf_uart_alu
             
             `STATE_WRITE:
             begin
-                uart_wr       = `LOW;      
+                uart_wr       = `HIGH;      
                 state_next    = `STATE_WAIT_READ;
             end
         endcase        

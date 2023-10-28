@@ -19,9 +19,9 @@ module fifo
         output wire                      empty
     );
     
-    reg [$clog2(FIFO_SIZE) - 1 : 0] array_reg [FIFO_SIZE - 1 : 0];
-    reg [WORD_WIDTH - 1 : 0]        w_ptr_reg, w_ptr_next, w_ptr_succ;
-    reg [WORD_WIDTH - 1 : 0]        r_ptr_reg, r_ptr_next, r_ptr_succ;
+    reg [WORD_WIDTH - 1 : 0]        array_reg [FIFO_SIZE - 1 : 0];
+    reg [$clog2(FIFO_SIZE) - 1 : 0] w_ptr_reg, w_ptr_next, w_ptr_succ;
+    reg [$clog2(FIFO_SIZE) - 1 : 0] r_ptr_reg, r_ptr_next, r_ptr_succ;
     reg                             full_reg, full_next;
     reg                             empty_reg, empty_next;
     
