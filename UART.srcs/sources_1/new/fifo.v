@@ -47,8 +47,8 @@ module fifo
             end
         else
             begin
-                r_ptr_reg <= w_ptr_next;
-                r_ptr_reg <= w_ptr_next;
+                w_ptr_reg <= w_ptr_next;
+                r_ptr_reg <= r_ptr_next;
                 full_reg  <= full_next;
                 empty_reg <= empty_next;
             end

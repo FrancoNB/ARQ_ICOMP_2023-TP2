@@ -13,14 +13,14 @@
 
 module alu
     #(
-        parameter IO_BUS_WIDTH = `IO_BUS_WIDTH
+        parameter IO_BUS_WIDTH  = `IO_BUS_WIDTH,
+        parameter OP_CODE_WIDTH = `OP_CODE_WIDTH
     )
     (
-        input  wire [`OP_CODE_WIDTH - 1 : 0] op_code, 
-        input  wire [IO_BUS_WIDTH - 1 : 0]   data_a,
-        input  wire [IO_BUS_WIDTH - 1 : 0]   data_b,
-        
-        output wire [IO_BUS_WIDTH - 1 : 0]   out_data
+        input  wire [OP_CODE_WIDTH - 1 : 0] op_code, 
+        input  wire [IO_BUS_WIDTH - 1 : 0]  data_a,
+        input  wire [IO_BUS_WIDTH - 1 : 0]  data_b,
+        output wire [IO_BUS_WIDTH - 1 : 0]  out_data
     );
     
     reg[IO_BUS_WIDTH - 1 : 0] result;
