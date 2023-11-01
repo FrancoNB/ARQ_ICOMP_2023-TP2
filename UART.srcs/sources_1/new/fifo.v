@@ -109,7 +109,9 @@ module fifo
                             if (r_ptr_succ == w_ptr_reg)
                                 empty_next = `HIGH;
                         end
-                end        
+                end
+                
+            default:;         
         endcase
     end
     

@@ -25,10 +25,10 @@ module intf_uart_alu
 
     reg [`STATE_REG_SIZE - 1 : 0]    state_reg, state_next;
     reg [`SELECTOR_REG_SIZE - 1 : 0] selector_reg, selector_next;
-    reg [IO_BUS_WIDTH - 1 : 0]       data_a_reg, data_b_reg;
-    reg [OP_CODE_WIDTH - 1 : 0]      op_code_reg;
+    reg [IO_BUS_WIDTH - 1 : 0]       data_a_reg, data_b_reg, data_a_next, data_b_next;
+    reg [OP_CODE_WIDTH - 1 : 0]      op_code_reg, op_code_next;
     reg [IO_BUS_WIDTH - 1 : 0]       result_reg, result_next;
-    reg                              uart_rd_reg, uart_wr_reg;
+    reg                              uart_rd_reg, uart_wr_reg, uart_rd_next, uart_wr_next;
 
     always @ (posedge clk, posedge reset) 
     begin
@@ -48,13 +48,21 @@ module intf_uart_alu
                 state_reg    <= state_next;
                 result_reg   <= result_next;
                 selector_reg <= selector_next;
+                op_code_reg  <= op_code_next;
+                data_a_reg   <= data_a_next;
+                data_b_reg   <= data_b_next;
+                uart_rd_reg  <= uart_rd_next;
+                uart_wr_reg  <= uart_wr_next;
             end
     end
     
     always @ (*)
     begin
-        uart_rd_reg   = `LOW;
-        uart_wr_reg   = `LOW; 
+        uart_rd_next  = `LOW;
+        uart_wr_next  = `LOW;
+        op_code_next  = op_code_reg;
+        data_a_next   = data_a_reg;
+        data_b_next   = data_b_reg;
         state_next    = state_reg;
         result_next   = result_reg;
         selector_next = selector_reg;
@@ -63,19 +71,21 @@ module intf_uart_alu
             `STATE_WAIT_READ:
             begin
                 if (~uart_empty)
-                    state_next = `STATE_READ;
+                    begin
+                        uart_rd_next = `HIGH;
+                        state_next   = `STATE_READ;
+                    end
             end
             
             `STATE_READ:
             begin
                 case(selector_reg)
-                    `SELECT_IN_DATA_A  : data_a_reg  = uart_rx;
-                    `SELECT_IN_DATA_B  : data_b_reg  = uart_rx;
-                    `SELECT_IN_OP_CODE : op_code_reg = uart_rx[OP_CODE_WIDTH - 1 : 0];
+                    `SELECT_IN_DATA_A  : data_a_next  = uart_rx;
+                    `SELECT_IN_DATA_B  : data_b_next  = uart_rx;
+                    `SELECT_IN_OP_CODE : op_code_next = uart_rx[OP_CODE_WIDTH - 1 : 0];
+                    default:;
                 endcase
                 
-                uart_rd_reg = `HIGH;
-
                 if (selector_reg == `SELECT_IN_OP_CODE)
                     begin
                         selector_next = `CLEAR(2);
@@ -92,15 +102,15 @@ module intf_uart_alu
             begin
                 if (~uart_full)
                 begin
+                    uart_wr_next = `HIGH;
                     result_next = alu_result;     
                     state_next  = `STATE_WRITE;
                 end
             end
             
             `STATE_WRITE:
-            begin
-                uart_wr_reg = `HIGH;      
-                state_next  = `STATE_WAIT_READ;
+            begin  
+                state_next   = `STATE_WAIT_READ;
             end
         endcase        
     end
