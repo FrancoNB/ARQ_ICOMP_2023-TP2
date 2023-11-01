@@ -77,7 +77,7 @@ module uart_rx
                     if (s_reg == (SB_TICKS - 1))
                         begin
                             s_next = `CLEAR(`S_REG_SIZE);
-                            b_next = {rx, b_reg[`B_REG_SIZE - 1 : 0]};
+                            b_next = {rx, b_reg[`B_REG_SIZE - 1 : 1]};
                             
                             if(n_reg == (DATA_BITS - 1))
                                 state_next = `STATE_STOP;

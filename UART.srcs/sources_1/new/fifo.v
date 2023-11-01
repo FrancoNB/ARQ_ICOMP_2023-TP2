@@ -92,8 +92,23 @@ module fifo
                     
             `STATE_READ_AND_WRITE:
                 begin
-                    w_ptr_next = w_ptr_succ;
-                    r_ptr_next = r_ptr_succ;
+                    if (~full_reg)
+                        begin
+                            w_ptr_next = w_ptr_succ;
+                            empty_next  = `LOW;
+                            
+                            if (w_ptr_succ == r_ptr_reg)
+                                full_next = `HIGH;
+                        end 
+                        
+                    if(~empty_reg)
+                        begin
+                            r_ptr_next = r_ptr_succ;
+                            full_next  = `LOW;
+                            
+                            if (r_ptr_succ == w_ptr_reg)
+                                empty_next = `HIGH;
+                        end
                 end        
         endcase
     end

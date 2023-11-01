@@ -15,8 +15,8 @@ module intf_uart_alu
         input  wire                         uart_full,         
         input  wire [IO_BUS_WIDTH - 1 : 0]  uart_rx,
         input  wire [IO_BUS_WIDTH - 1 : 0]  alu_result,  
-        output reg                          uart_wr,
-        output reg                          uart_rd,
+        output wire                         uart_wr,
+        output wire                         uart_rd,
         output wire [IO_BUS_WIDTH - 1 : 0]  uart_tx,
         output wire [OP_CODE_WIDTH - 1 : 0] alu_op_code,
         output wire [IO_BUS_WIDTH - 1 : 0]  alu_data_a,
@@ -28,6 +28,7 @@ module intf_uart_alu
     reg [IO_BUS_WIDTH - 1 : 0]       data_a_reg, data_b_reg;
     reg [OP_CODE_WIDTH - 1 : 0]      op_code_reg;
     reg [IO_BUS_WIDTH - 1 : 0]       result_reg, result_next;
+    reg                              uart_rd_reg, uart_wr_reg;
 
     always @ (posedge clk, posedge reset) 
     begin
@@ -39,8 +40,8 @@ module intf_uart_alu
                 data_b_reg   <= `CLEAR(IO_BUS_WIDTH);
                 result_reg   <= `CLEAR(IO_BUS_WIDTH);
                 selector_reg <= `CLEAR(2);
-                uart_wr      <= `LOW;
-                uart_rd      <= `LOW;
+                uart_rd_reg  <= `LOW;
+                uart_wr_reg  <= `LOW;
             end
         else
             begin
@@ -52,6 +53,8 @@ module intf_uart_alu
     
     always @ (*)
     begin
+        uart_rd_reg   = `LOW;
+        uart_wr_reg   = `LOW; 
         state_next    = state_reg;
         result_next   = result_reg;
         selector_next = selector_reg;
@@ -60,10 +63,7 @@ module intf_uart_alu
             `STATE_WAIT_READ:
             begin
                 if (~uart_empty)
-                    begin
-                        uart_rd       = `LOW;      
-                        state_next    = `STATE_READ;
-                    end
+                    state_next = `STATE_READ;
             end
             
             `STATE_READ:
@@ -74,7 +74,7 @@ module intf_uart_alu
                     `SELECT_IN_OP_CODE : op_code_reg = uart_rx[OP_CODE_WIDTH - 1 : 0];
                 endcase
                 
-                uart_rd = `HIGH;
+                uart_rd_reg = `HIGH;
 
                 if (selector_reg == `SELECT_IN_OP_CODE)
                     begin
@@ -92,7 +92,6 @@ module intf_uart_alu
             begin
                 if (~uart_full)
                 begin
-                    uart_wr     = `LOW; 
                     result_next = alu_result;     
                     state_next  = `STATE_WRITE;
                 end
@@ -100,15 +99,17 @@ module intf_uart_alu
             
             `STATE_WRITE:
             begin
-                uart_wr       = `HIGH;      
-                state_next    = `STATE_WAIT_READ;
+                uart_wr_reg = `HIGH;      
+                state_next  = `STATE_WAIT_READ;
             end
         endcase        
     end
     
     assign alu_op_code = op_code_reg; 
     assign alu_data_a  = data_a_reg; 
-    assign alu_data_a  = data_b_reg; 
+    assign alu_data_b  = data_b_reg; 
     assign uart_tx     = result_reg;
+    assign uart_rd     = uart_rd_reg;
+    assign uart_wr     = uart_wr_reg;
            
 endmodule
