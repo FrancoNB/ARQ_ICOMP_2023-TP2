@@ -23,7 +23,7 @@ module intf_uart_alu
         output wire [IO_BUS_WIDTH - 1 : 0]  alu_data_b
     );
 
-    reg [`STATE_REG_SIZE - 1 : 0]    state_reg, state_next;
+    reg [`INTF_STATE_REG_SIZE - 1 : 0]    state_reg, state_next;
     reg [`SELECTOR_REG_SIZE - 1 : 0] selector_reg, selector_next;
     reg [IO_BUS_WIDTH - 1 : 0]       data_a_reg, data_b_reg, data_a_next, data_b_next;
     reg [OP_CODE_WIDTH - 1 : 0]      op_code_reg, op_code_next;
@@ -34,7 +34,7 @@ module intf_uart_alu
     begin
         if (reset)
             begin
-                state_reg    <= `STATE_WAIT_READ;
+                state_reg    <= `INTF_STATE_WAIT_READ;
                 op_code_reg  <= `CLEAR(OP_CODE_WIDTH);
                 data_a_reg   <= `CLEAR(IO_BUS_WIDTH);
                 data_b_reg   <= `CLEAR(IO_BUS_WIDTH);
@@ -68,16 +68,16 @@ module intf_uart_alu
         selector_next = selector_reg;
         
         case(state_reg)
-            `STATE_WAIT_READ:
+            `INTF_STATE_WAIT_READ:
             begin
                 if (~uart_empty)
                     begin
                         uart_rd_next = `HIGH;
-                        state_next   = `STATE_READ;
+                        state_next   = `INTF_STATE_READ;
                     end
             end
             
-            `STATE_READ:
+            `INTF_STATE_READ:
             begin
                 case(selector_reg)
                     `SELECT_IN_DATA_A  : data_a_next  = uart_rx;
@@ -89,28 +89,28 @@ module intf_uart_alu
                 if (selector_reg == `SELECT_IN_OP_CODE)
                     begin
                         selector_next = `CLEAR(2);
-                        state_next    = `STATE_WAIT_WRITE;
+                        state_next    = `INTF_STATE_WAIT_WRITE;
                     end
                 else
                     begin
-                        state_next    = `STATE_WAIT_READ;
+                        state_next    = `INTF_STATE_WAIT_READ;
                         selector_next = selector_reg + 1;
                     end
             end
             
-            `STATE_WAIT_WRITE:
+            `INTF_STATE_WAIT_WRITE:
             begin
                 if (~uart_full)
                 begin
                     uart_wr_next = `HIGH;
                     result_next = alu_result;     
-                    state_next  = `STATE_WRITE;
+                    state_next  = `INTF_STATE_WRITE;
                 end
             end
             
-            `STATE_WRITE:
+            `INTF_STATE_WRITE:
             begin  
-                state_next   = `STATE_WAIT_READ;
+                state_next   = `INTF_STATE_WAIT_READ;
             end
         endcase        
     end

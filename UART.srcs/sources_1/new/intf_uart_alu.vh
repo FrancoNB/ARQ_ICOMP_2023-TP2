@@ -8,9 +8,9 @@
     `define SELECT_IN_DATA_B     2'b01
     `define SELECT_IN_OP_CODE    2'b10 
 
-    `define STATE_REG_SIZE       2
-    `define STATE_WAIT_READ      2'b00 
-    `define STATE_READ           2'b01
-    `define STATE_WAIT_WRITE     2'b10
-    `define STATE_WRITE          2'b11
+    `define INTF_STATE_REG_SIZE       2
+    `define INTF_STATE_WAIT_READ      2'b00 
+    `define INTF_STATE_READ           2'b01
+    `define INTF_STATE_WAIT_WRITE     2'b10
+    `define INTF_STATE_WRITE          2'b11
 `endif // __INTF_UART_ALU_VH__

@@ -66,7 +66,7 @@ module fifo
         empty_next = empty_reg;
         
         case({wr, rd})
-            `STATE_READ:
+            `FIFO_STATE_READ:
                 begin
                     if(~empty_reg)
                         begin
@@ -78,7 +78,7 @@ module fifo
                         end
                 end
             
-            `STATE_WRITE:
+            `FIFO_STATE_WRITE:
                 begin
                     if (~full_reg)
                         begin
@@ -90,7 +90,7 @@ module fifo
                         end 
                 end   
                     
-            `STATE_READ_AND_WRITE:
+            `FIFO_STATE_READ_AND_WRITE:
                 begin
                     if (~full_reg)
                         begin

@@ -1,0 +1,45 @@
+Vivado Simulator v2023.2
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2023.2/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L secureip --snapshot top_level_tb_func_impl xil_defaultlib.top_level_tb xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+WARNING: [VRFC 10-2861] module 'top_level' does not have a parameter named DATA_BITS [D:/UART/UART.srcs/sim_1/new/top_level_tb.v:275]
+WARNING: [VRFC 10-2861] module 'top_level' does not have a parameter named OP_CODE_BITS [D:/UART/UART.srcs/sim_1/new/top_level_tb.v:276]
+WARNING: [VRFC 10-2861] module 'top_level' does not have a parameter named SB_TICKS [D:/UART/UART.srcs/sim_1/new/top_level_tb.v:277]
+WARNING: [VRFC 10-2861] module 'top_level' does not have a parameter named DVSR_BIT [D:/UART/UART.srcs/sim_1/new/top_level_tb.v:278]
+WARNING: [VRFC 10-2861] module 'top_level' does not have a parameter named DVSR [D:/UART/UART.srcs/sim_1/new/top_level_tb.v:279]
+WARNING: [VRFC 10-2861] module 'top_level' does not have a parameter named FIFO_SIZE [D:/UART/UART.srcs/sim_1/new/top_level_tb.v:280]
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module unisims_ver.CARRY4
+Compiling module xil_defaultlib.alu
+Compiling module unisims_ver.BUFG
+Compiling module unisims_ver.IBUF
+Compiling module unisims_ver.LUT4
+Compiling module unisims_ver.x_lut3_mux8
+Compiling module unisims_ver.LUT3
+Compiling module unisims_ver.LUT6
+Compiling module unisims_ver.FDPE_default
+Compiling module unisims_ver.FDCE_default
+Compiling module unisims_ver.x_lut2_mux4
+Compiling module unisims_ver.LUT2
+Compiling module unisims_ver.LUT5
+Compiling module xil_defaultlib.intf_uart_alu
+Compiling module unisims_ver.OBUF
+Compiling module xil_defaultlib.uart_brg
+Compiling module unisims_ver.RAM64M
+Compiling module unisims_ver.x_lut1_mux2
+Compiling module unisims_ver.LUT1
+Compiling module xil_defaultlib.fifo
+Compiling module xil_defaultlib.fifo_0
+Compiling module xil_defaultlib.uart_rx
+Compiling module xil_defaultlib.uart_tx
+Compiling module xil_defaultlib.uart
+Compiling module xil_defaultlib.top_level
+Compiling module xil_defaultlib.top_level_tb
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot top_level_tb_func_impl

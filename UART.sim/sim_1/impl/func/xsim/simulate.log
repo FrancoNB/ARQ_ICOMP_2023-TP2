@@ -1,0 +1,14 @@
+Time resolution is 1 ps
+Resta 00100100 - 10000001
+Respuesta incorrecta, resultado: esperado 10100011, resultado obtenido 11110000
+Sra 01100011 >>> 00001101
+Respuesta incorrecta, resultado: esperado 00000000, resultado obtenido 11110000
+Resta 01100101 - 00010010
+Respuesta incorrecta, resultado: esperado 01010011, resultado obtenido 11110000
+Sra 00001101 >>> 01110110
+Respuesta incorrecta, resultado: esperado 00000000, resultado obtenido 11110000
+Resta 11101101 - 10001100
+Respuesta incorrecta, resultado: esperado 01100001, resultado obtenido 11110000
+And 11000110 & 11000101
+Respuesta incorrecta, resultado: esperado 11000100, resultado obtenido 11110000
+And 11100101 & 01110111
