@@ -33,8 +33,8 @@ module uart
     
     uart_brg
     #(
-      .BAUDRATE_PRECISION (DVSR),
-      .BAUDRATE_PERIOD    (DVSR_BIT)
+      .BAUDRATE_PRECISION (DVSR_BIT),
+      .BAUDRATE_PERIOD    (DVSR)
     )
     baud_gen_unit
     (

@@ -9,10 +9,10 @@ Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis
 Time Resolution for simulation is 1ps
-Compiling module xil_defaultlib.uart_brg(BAUDRATE_PRECISION=163,...
+Compiling module xil_defaultlib.uart_brg(BAUDRATE_PRECISION=9,BA...
 Compiling module xil_defaultlib.uart_rx
 Compiling module xil_defaultlib.uart_tx
-Compiling module xil_defaultlib.fifo
+Compiling module xil_defaultlib.fifo(FIFO_SIZE=8)
 Compiling module xil_defaultlib.uart
 Compiling module xil_defaultlib.alu
 Compiling module xil_defaultlib.intf_uart_alu

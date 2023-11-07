@@ -1,20 +1,15 @@
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="franc" Host="NB-FRANCO" Pid="23916" HostCore="20" HostMemory="016849293312">
+    <Process Command="vivado.bat" Owner="franc" Host="NB-FRANCO" Pid="18716" HostCore="20" HostMemory="016849293312">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="franc" Host="NB-FRANCO" Pid="11936" HostCore="20" HostMemory="016849293312">
+    <Process Command="vivado.bat" Owner="franc" Host="NB-FRANCO" Pid="21488" HostCore="20" HostMemory="016849293312">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="franc" Host="NB-FRANCO" Pid="1800" HostCore="20" HostMemory="016849293312">
-    </Process>
-</ProcessHandle>
-<?xml version="1.0"?>
-<ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="franc" Host="NB-FRANCO" Pid="25220" HostCore="20" HostMemory="016849293312">
+    <Process Command="vivado.bat" Owner="franc" Host="NB-FRANCO" Pid="4960" HostCore="20" HostMemory="016849293312">
     </Process>
 </ProcessHandle>

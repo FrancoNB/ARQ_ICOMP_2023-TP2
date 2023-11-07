@@ -18,9 +18,9 @@ module uart_rx
     );
     
     reg [`UART_STATE_REG_SIZE - 1 : 0] state_reg, state_next;
-    reg [`S_REG_SIZE - 1 : 0]     s_reg, s_next;
-    reg [`N_REG_SIZE - 1 : 0]     n_reg, n_next;
-    reg [`B_REG_SIZE - 1 : 0]     b_reg, b_next;
+    reg [`S_REG_SIZE - 1 : 0]          s_reg, s_next;
+    reg [`N_REG_SIZE - 1 : 0]          n_reg, n_next;
+    reg [`B_REG_SIZE - 1 : 0]          b_reg, b_next;
     
     always @(posedge clk or posedge reset) 
     begin 

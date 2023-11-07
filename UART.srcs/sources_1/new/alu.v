@@ -17,10 +17,10 @@ module alu
         parameter OP_CODE_WIDTH = `OP_CODE_WIDTH
     )
     (
-        input  wire [OP_CODE_WIDTH - 1 : 0] op_code, 
-        input  wire [IO_BUS_WIDTH - 1 : 0]  data_a,
-        input  wire [IO_BUS_WIDTH - 1 : 0]  data_b,
-        output wire [IO_BUS_WIDTH - 1 : 0]  out_data
+        input         [OP_CODE_WIDTH - 1 : 0] op_code, 
+        input  signed [IO_BUS_WIDTH - 1 : 0]  data_a,
+        input  signed [IO_BUS_WIDTH - 1 : 0]  data_b,
+        output signed [IO_BUS_WIDTH - 1 : 0]  out_data
     );
     
     reg[IO_BUS_WIDTH - 1 : 0] result;
@@ -32,9 +32,9 @@ module alu
             `OP_SUB  : result <= data_a - data_b;
             `OP_AND  : result <= data_a & data_b;
             `OP_OR   : result <= data_a | data_b;
-            `OP_XOR  : result <= data_a ^ data_b;
-            `OP_SRA  : result <= data_a >> data_b;
-            `OP_SRL  : result <= data_a >>> data_b;
+            `OP_XOR  : result <= data_a ^  data_b;
+            `OP_SRA  : result <= data_a >>> data_b;
+            `OP_SRL  : result <= data_a >> data_b;
             `OP_NOR  : result <= ~(data_a | data_b);
             default  : result <= {IO_BUS_WIDTH {1'bz}};
         endcase

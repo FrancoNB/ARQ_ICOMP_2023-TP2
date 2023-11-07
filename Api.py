@@ -88,7 +88,7 @@ def code_to_bin(code):
         "ADD": 0b100000,
         "SUB": 0b100010,
         "AND": 0b100100,
-        "OR": 0b100101,
+        "OR":  0b100101,
         "XOR": 0b100110,
         "SRA": 0b000011,
         "SRL": 0b000010,
@@ -97,12 +97,12 @@ def code_to_bin(code):
     return op_codes.get(code, 0b100000)
 
 def write_to_fpga(data_to_send):
-    data_to_send = int(data_to_send).to_bytes(1, 'big')
+    data_to_send = int(data_to_send).to_bytes(1, 'big',  signed=True)
     serial_port.write(data_to_send)
     time.sleep(0.05)
 
 def read_from_fpga():
-    return int.from_bytes(serial_port.read(), byteorder='big')
+    return int.from_bytes(serial_port.read(), byteorder='big', signed=True)
 
 def check_valid_operand(operand):
     try:

@@ -40,8 +40,8 @@ module fifo
     begin
         if (reset)
             begin
-                w_ptr_reg <= `CLEAR(WORD_WIDTH);
-                r_ptr_reg <= `CLEAR(WORD_WIDTH);
+                w_ptr_reg <= `CLEAR($clog2(FIFO_SIZE));
+                r_ptr_reg <= `CLEAR($clog2(FIFO_SIZE));
                 full_reg  <= `LOW;
                 empty_reg <= `HIGH;
             end
@@ -92,23 +92,8 @@ module fifo
                     
             `FIFO_STATE_READ_AND_WRITE:
                 begin
-                    if (~full_reg)
-                        begin
-                            w_ptr_next = w_ptr_succ;
-                            empty_next  = `LOW;
-                            
-                            if (w_ptr_succ == r_ptr_reg)
-                                full_next = `HIGH;
-                        end 
-                        
-                    if(~empty_reg)
-                        begin
-                            r_ptr_next = r_ptr_succ;
-                            full_next  = `LOW;
-                            
-                            if (r_ptr_succ == w_ptr_reg)
-                                empty_next = `HIGH;
-                        end
+                    w_ptr_next = w_ptr_succ;
+                    r_ptr_next = r_ptr_succ;
                 end
                 
             default:;         

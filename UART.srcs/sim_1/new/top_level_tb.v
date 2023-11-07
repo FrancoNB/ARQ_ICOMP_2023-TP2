@@ -16,19 +16,17 @@ module top_level_tb
         parameter FIFO_SIZE     = `FIFO_SIZE
     );
     
-    reg                        clk;
-    reg                        reset;
-    reg                        rx;
-    reg [DATA_BITS - 1 : 0]    data_a;
-    reg [DATA_BITS - 1 : 0]    data_b;
-    reg [DATA_BITS - 1 : 0]    w_data;
-    reg [DATA_BITS - 1 : 0]    r_data;
-    reg [2 : 0]                choise_op;
-    wire                       tx_full;
-    wire                       rx_empty;
-    wire                       tx;
+    reg                         clk;
+    reg                         reset;
+    reg                         rx;
+    reg  [DATA_BITS - 1 : 0]    data_a;
+    reg  [DATA_BITS - 1 : 0]    data_b;
+    reg  [DATA_BITS - 1 : 0]    w_data;
+    reg  [DATA_BITS - 1 : 0]    r_data;
+    reg  [2 : 0]                choise_op;
+    wire                        tx;
      
-    always #10 clk = ~clk;
+    always #5 clk = ~clk;
     
     integer i = 0;
     
@@ -43,17 +41,17 @@ module top_level_tb
         begin 
             rx = `LOW;
             
-            #(DVSR * SB_TICKS);
+            #(DVSR * SB_TICKS * 10);
             
             for (i = 0; i < DATA_BITS; i = i + 1)
                 begin
                     rx = w_data[i];
-                    #(DVSR * SB_TICKS);
+                    #(DVSR * SB_TICKS * 10);
                 end
             
             rx = `HIGH;
             
-            #(DVSR * SB_TICKS);
+            #(DVSR * SB_TICKS * 10);
         end
     endtask
     
@@ -62,18 +60,18 @@ module top_level_tb
             while (tx)
                 #20;
                 
-            #(DVSR * SB_TICKS);
+            #(DVSR * SB_TICKS * 10);
             
             for (i = 0; i < DATA_BITS; i = i + 1)
                 begin
                     r_data[i] = tx;
-                    #(DVSR * SB_TICKS);
+                    #(DVSR * SB_TICKS * 10);
                 end
             
             while (~tx)
                 #20;
                 
-            #(DVSR * SB_TICKS);
+            #(DVSR * SB_TICKS * 10);
         end
     endtask
     
@@ -284,8 +282,6 @@ module top_level_tb
         .clk(clk),
         .reset(reset),
         .rx(rx),
-        .tx_full(tx_full),
-        .rx_empty(rx_empty),
         .tx(tx)
     );
     
