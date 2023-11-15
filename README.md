@@ -153,3 +153,10 @@ El sistema opera de la siguiente manera:
 2. El módulo `intf_uart_alu` se encarga de la coordinación entre la ALU y el UART. Recibe datos desde el UART y los envía a la ALU para su procesamiento. Una vez que la ALU ha completado la operación, los resultados se envían de vuelta al UART para su transmisión.
 3. El módulo UART transmite los datos serie generando una señal de transmisión (`tx`) y enviando los datos desde una FIFO de transmisión.
 4. La ALU realiza operaciones aritméticas y lógicas en los datos proporcionados por el UART y devuelve los resultados al UART.
+
+
+## Señal UART en el Osciloscopio
+
+![Osciloscopio 1](/Img/Osc%201.jpeg)
+
+![Osciloscopio 2](/Img/Osc%202.jpeg)

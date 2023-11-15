@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date         : Tue Nov  7 18:45:59 2023
+| Date         : Wed Nov 15 19:39:55 2023
 | Host         : NB-Franco running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file top_level_control_sets_placed.rpt
 | Design       : top_level
@@ -58,11 +58,11 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |               2 |            2 |
-| No           | No                    | Yes                    |              40 |           15 |
+| No           | No                    | No                     |               2 |            1 |
+| No           | No                    | Yes                    |              40 |           16 |
 | No           | Yes                   | No                     |               0 |            0 |
 | Yes          | No                    | No                     |               0 |            0 |
-| Yes          | No                    | Yes                    |              54 |           19 |
+| Yes          | No                    | Yes                    |              54 |           18 |
 | Yes          | Yes                   | No                     |               0 |            0 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
@@ -73,18 +73,18 @@ Table of Contents
 +----------------+-------------------------------------+------------------+------------------+----------------+--------------+
 |  Clock Signal  |            Enable Signal            | Set/Reset Signal | Slice Load Count | Bel Load Count | Bels / Slice |
 +----------------+-------------------------------------+------------------+------------------+----------------+--------------+
-|  clk_IBUF_BUFG |                                     |                  |                2 |              2 |         1.00 |
-|  clk_IBUF_BUFG | uart_unit/uart_rx_unit/s_next       | reset_IBUF       |                2 |              4 |         2.00 |
+|  clk_IBUF_BUFG |                                     |                  |                1 |              2 |         2.00 |
+|  clk_IBUF_BUFG | uart_unit/uart_rx_unit/s_next       | reset_IBUF       |                1 |              4 |         4.00 |
 |  clk_IBUF_BUFG | uart_unit/uart_tx_unit/s_next       | reset_IBUF       |                1 |              4 |         4.00 |
-|  clk_IBUF_BUFG | intf_uart_alu_unit/op_code_reg      | reset_IBUF       |                1 |              6 |         6.00 |
+|  clk_IBUF_BUFG | intf_uart_alu_unit/op_code_reg      | reset_IBUF       |                2 |              6 |         3.00 |
 |  clk_IBUF_BUFG | intf_uart_alu_unit/data_a_reg       | reset_IBUF       |                3 |              8 |         2.67 |
-|  clk_IBUF_BUFG | intf_uart_alu_unit/result_reg       | reset_IBUF       |                4 |              8 |         2.00 |
 |  clk_IBUF_BUFG | intf_uart_alu_unit/data_b_reg       | reset_IBUF       |                3 |              8 |         2.67 |
-|  clk_IBUF_BUFG | uart_unit/uart_rx_unit/b_next       | reset_IBUF       |                3 |              8 |         2.67 |
+|  clk_IBUF_BUFG | intf_uart_alu_unit/result_reg       | reset_IBUF       |                5 |              8 |         1.60 |
+|  clk_IBUF_BUFG | uart_unit/uart_rx_unit/b_next       | reset_IBUF       |                1 |              8 |         8.00 |
 |  clk_IBUF_BUFG | uart_unit/uart_tx_unit/b_next_0     | reset_IBUF       |                2 |              8 |         4.00 |
 |  clk_IBUF_BUFG | intf_uart_alu_unit/wr_en            |                  |                2 |             12 |         6.00 |
 |  clk_IBUF_BUFG | uart_unit/uart_rx_unit/full_reg_reg |                  |                2 |             12 |         6.00 |
-|  clk_IBUF_BUFG |                                     | reset_IBUF       |               15 |             40 |         2.67 |
+|  clk_IBUF_BUFG |                                     | reset_IBUF       |               16 |             40 |         2.50 |
 +----------------+-------------------------------------+------------------+------------------+----------------+--------------+
 
 
